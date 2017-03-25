@@ -23,15 +23,8 @@ public class update
 	
 	try
     {
-        Class.forName("com.mysql.jdbc.Driver");
-    }
-    catch(ClassNotFoundException e)
-    {
-        System.out.println(e.getMessage());
-    }
- try
-    {
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/logindb","root","mylife@123");
+	 	dbconnect db = new dbconnect();
+		Connection con = db.connect();
         String query = "update userdata set name = ?,email = ?,address = ?,ppassword = ?,cpassword = ? where username = ?";
         java.sql.PreparedStatement preparedStmt = con.prepareStatement(query);
         preparedStmt.setString(1,name);
@@ -58,7 +51,7 @@ public class update
         preparedStmt1.setInt(12,arts);
         preparedStmt1.setString(13,uname);
         preparedStmt1.executeUpdate();
-        System.out.println("updated interest");
+        System.out.println("updated userdata and interest");
         preparedStmt1.close();
         con.close();
     }
@@ -66,6 +59,30 @@ public class update
     {
         System.out.println(e.getMessage());    
     }
+	}
+	public void updatedb1(String name,String email,String address,String uname,String password,String cpassword)
+	{
+		try
+		{
+			dbconnect db = new dbconnect();
+			Connection con = db.connect();
+	        String query = "update userdata set name = ?,email = ?,address = ?,ppassword = ?,cpassword = ? where username = ?";
+	        java.sql.PreparedStatement preparedStmt = con.prepareStatement(query);
+	        preparedStmt.setString(1,name);
+	        preparedStmt.setString(2,email);
+	        preparedStmt.setString(3,address);
+	        preparedStmt.setString(4,password);
+	        preparedStmt.setString(5,cpassword);
+	        preparedStmt.setString(6,uname);
+	        preparedStmt.executeUpdate();
+	        preparedStmt.close();
+	        System.out.println("updated userdata");
+	        con.close();
+		}
+		catch(SQLException e)
+	    {
+	        System.out.println(e.getMessage());    
+	    }
 	}
 
 }

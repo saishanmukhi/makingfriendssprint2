@@ -37,25 +37,14 @@ public class profile extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
 		ArrayList arrayList = new ArrayList();
 		uname = (String) session.getAttribute("uname");
 		
-		//String pname="";
 		try
-	    {
-	        Class.forName("com.mysql.jdbc.Driver");
-	    }
-	    catch(ClassNotFoundException e)
-	    {
-	        System.out.println(e.getMessage());
-	    }
-	 try
-	    {
-	        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/logindb","root","mylife@123");
-	        
+		{
+	        dbconnect db = new dbconnect();
+			Connection con = db.connect();
 	        Statement st1 = con.createStatement();  
 	        String q2 = "select concat_ws(\",\", (case when sports = 1 then 'sports' end),\n" +
                 " (case when animation = 1 then 'animation' end),\n" +
@@ -73,17 +62,18 @@ public class profile extends HttpServlet {
             
             ResultSet rs1 = st1.executeQuery(q2);
             while(rs1.next())
-            {String value =rs1.getString(1);
+            {
+            	String value =rs1.getString(1);
         	
-        	System.out.println(value);
+            	System.out.println(value);
         	StringTokenizer str = new StringTokenizer(value,",");
-        	while(str.hasMoreTokens()){
+        	while(str.hasMoreTokens())
+        	{
         		String interestValues = str.nextToken();
         		System.out.println(interestValues);
                 arrayList.add(interestValues);
                
-                System.out.println(arrayList);
-                
+                System.out.println(arrayList);    
 
         	}
         	session.setAttribute("arrayList", arrayList);
@@ -133,12 +123,12 @@ public class profile extends HttpServlet {
 		//String username = request.getParameter("username").toString();
 		//System.out.println(username);
 		String name,email,address,password,cpassword;
-		String[] hobbies = new String[20];
 		name = request.getParameter("name").toString();
 		email = request.getParameter("email").toString();
 		address = request.getParameter("address").toString();
 		password = request.getParameter("password").toString();
 		cpassword = request.getParameter("confirmpassword").toString();
+		int count = 0;
 		int sports,animation,music,books,videogames,travel,fitness,boardgames,food,tvmovies,youtubemedia,arts;
 		if(request.getParameter("sports") == null)
 		{
@@ -149,6 +139,7 @@ public class profile extends HttpServlet {
 		{
 		   //handle checked case
 		   sports = 1;
+		   count++;
 		}
 		if(request.getParameter("animation") == null)
 		{
@@ -159,6 +150,7 @@ public class profile extends HttpServlet {
 		{
 		   //handle checked case
 		   animation = 1;
+		   count++;
 		}
 		if(request.getParameter("music") == null)
 		{
@@ -169,6 +161,7 @@ public class profile extends HttpServlet {
 		{
 		   //handle checked case
 		   music = 1;
+		   count++;
 		}
 		if(request.getParameter("books") == null)
 		{
@@ -179,6 +172,7 @@ public class profile extends HttpServlet {
 		{
 		   //handle checked case
 		   books = 1;
+		   count++;
 		}
 		if(request.getParameter("videogames") == null)
 		{
@@ -189,6 +183,7 @@ public class profile extends HttpServlet {
 		{
 		   //handle checked case
 			videogames = 1;
+			count++;
 		}
 		if(request.getParameter("travel") == null)
 		{
@@ -199,6 +194,7 @@ public class profile extends HttpServlet {
 		{
 		   //handle checked case
 			travel = 1;
+			count++;
 		}
 		if(request.getParameter("fitness") == null)
 		{
@@ -209,6 +205,7 @@ public class profile extends HttpServlet {
 		{
 		   //handle checked case
 			fitness = 1;
+			count++;
 		}
 		if(request.getParameter("boardgames") == null)
 		{
@@ -219,6 +216,7 @@ public class profile extends HttpServlet {
 		{
 		   //handle checked case
 			boardgames = 1;
+			count++;
 		}
 		if(request.getParameter("food") == null)
 		{
@@ -229,6 +227,7 @@ public class profile extends HttpServlet {
 		{
 		   //handle checked case
 			food = 1;
+			count++;
 		}
 		if(request.getParameter("tvmovies") == null)
 		{
@@ -239,6 +238,7 @@ public class profile extends HttpServlet {
 		{
 		   //handle checked case
 			tvmovies = 1;
+			count++;
 		}
 		if(request.getParameter("youtubemedia") == null)
 		{
@@ -249,6 +249,7 @@ public class profile extends HttpServlet {
 		{
 		   //handle checked case
 			youtubemedia = 1;
+			count++;
 		}
 		if(request.getParameter("arts") == null)
 		{
@@ -259,13 +260,95 @@ public class profile extends HttpServlet {
 		{
 		   //handle checked case
 			arts = 1;
+			count++;
 		}
+		String wemail="",wname="",winterest="",waddress="",wpassword="";
+		int checkcount = 0;
+		System.out.println(count);
 		System.out.println(name);
+		System.out.println(uname);
 		System.out.println(email);
 		System.out.println(sports);
 		System.out.println("password is " + password);
+		validate p = new validate();
+		if(p.validateEmail(email)==true)
+		{
+			System.out.println("email validated");
+			wemail="";
+			checkcount++;
+		}
+		else
+		{
+			wemail = "Invalid Email";
+		}
+		if(p.validateName(name)==true)
+		{
+			System.out.println("name validated");
+			wname="";
+			checkcount++;	
+		}
+		else
+		{
+			wname = "Invalid Name.";
+		}
+		if(address.equals(""))
+		{
+			waddress = "Address Required";
+		}
+		else
+		{
+			waddress = "";
+			checkcount++;
+			System.out.println("Address Validated");
+		}
+		boolean userpass = p.validatePassword(password);
+		if(userpass == true)
+		{
+			System.out.println( "Password okay");
+			if(password.equals(cpassword))
+			{
+				wpassword="";
+				checkcount++;
+				System.out.println("Password Validated");
+			}
+			else
+			{
+				wpassword="Password Mismatch";
+			}
+		}
+		else
+		{
+			wpassword="Password Criteria not met Must Contain alphabet digit special character";
+		}
+		if(checkcount == 4)
+		{
+		if(count != 0)
+		{
 		update u = new update();
 		u.updatedb(name, email,address, uname, password,cpassword, sports, animation, music, books, videogames, travel, fitness, boardgames, food, tvmovies, youtubemedia, arts);
+		//request.setAttribute("updatedmessage", "Profile is edited and saved");
+		//request.setAttribute("uname", uname);
+		//RequestDispatcher dispatcher = request.getRequestDispatcher("/profile1.jsp");
+	     // dispatcher.forward(request, response);
+		}
+		else
+		{
+			update u = new update();
+			u.updatedb1(name,email,address,uname,password,cpassword);
+			request.setAttribute("updatedmessage", "Profile is edited and saved");
+			//request.setAttribute("uname", uname);
+			//RequestDispatcher dispatcher = request.getRequestDispatcher("/profile1.jsp");
+		     // dispatcher.forward(request, response);
+		}
+		}
+		else
+		{
+			
+			String error = wname + "\n" + wemail + "\n" + waddress + "\n" + wpassword;
+            request.setAttribute("loginError",error);
+           // RequestDispatcher dispatcher = request.getRequestDispatcher("/profile1.jsp");
+    		//dispatcher.forward(request, response);
+		}
 		
 	}
 

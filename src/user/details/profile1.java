@@ -1,14 +1,6 @@
 package user.details;
-import user.details.validate;
-
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,18 +8,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class reg
+ * Servlet implementation class profile1
  */
-@WebServlet("/reg")
-public class reg extends HttpServlet {
+@WebServlet("/profile1")
+public class profile1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public reg() {
+    public profile1() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,7 +29,7 @@ public class reg extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -45,15 +38,15 @@ public class reg extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession();
 		response.setContentType("text/html");
-		String name,email,dateofbirth,address,username,password,cpassword;
-		//String[] hobbies = new String[20];
+		String uname = (String) request.getAttribute("uname");
+		//String uname = request.getParameter("username").toString();
+		System.out.println("uname in profile 1 " + uname);
+		String name,email,address,password,cpassword;
 		name = request.getParameter("name").toString();
 		email = request.getParameter("email").toString();
-		dateofbirth = request.getParameter("dob").toString();
 		address = request.getParameter("address").toString();
-		username = request.getParameter("username").toString();
 		password = request.getParameter("password").toString();
 		cpassword = request.getParameter("confirmpassword").toString();
 		int count = 0;
@@ -172,7 +165,6 @@ public class reg extends HttpServlet {
 		{
 		   //handle unchecked case
 			youtubemedia = 0;
-			
 		}
 		else
 		{
@@ -191,19 +183,13 @@ public class reg extends HttpServlet {
 			arts = 1;
 			count++;
 		}
-		System.out.println(count);
-		/*String checkbox;
-		if(request.getParameter("agree") != null)
-		{
-			//out.println("insert data");
-		}
-		else
-		{
-			out.println("please agree to conditions");
-		}*/
-		
-		String wemail="",wname="",wdob="",winterest="",waddress="",wusername="",wpassword="";
+		String wemail="",wname="",winterest="",waddress="",wpassword="";
 		int checkcount = 0;
+		System.out.println(count);
+		System.out.println(name);
+		System.out.println(email);
+		System.out.println(sports);
+		System.out.println("password is " + password);
 		validate p = new validate();
 		if(p.validateEmail(email)==true)
 		{
@@ -219,32 +205,11 @@ public class reg extends HttpServlet {
 		{
 			System.out.println("name validated");
 			wname="";
-			checkcount++;
-			
+			checkcount++;	
 		}
 		else
 		{
-			wname = "Invalid Name.only letters";
-		}
-		if(p.validateBirthDate(dateofbirth)==true)
-		{
-			System.out.println("DOB validated");
-			wdob="";
-			checkcount++;
-		}
-		else
-		{
-			wdob = "Invalid Date of Birth.Expects mm/dd/yyyy";
-		}
-		if(count == 0)
-		{
-			winterest = "Select atleast one interest";
-		}
-		else
-		{
-			System.out.println("Interest selected");
-			winterest="";
-			checkcount++;
+			wname = "Invalid Name.";
 		}
 		if(address.equals(""))
 		{
@@ -255,18 +220,6 @@ public class reg extends HttpServlet {
 			waddress = "";
 			checkcount++;
 			System.out.println("Address Validated");
-		}
-		boolean uservalid = p.validateusername(username);
-		if((uservalid == false)&&(!username.equals("")))
-		{
-			System.out.println("Username Validated");
-			wusername="";
-			checkcount++;
-		}
-		else
-		{
-			wusername = "Username already Exists";
-			
 		}
 		boolean userpass = p.validatePassword(password);
 		if(userpass == true)
@@ -287,22 +240,35 @@ public class reg extends HttpServlet {
 		{
 			wpassword="Password Criteria not met Must Contain alphabet digit special character";
 		}
-		if(checkcount == 7)
+		if(checkcount == 4)
 		{
-			insert i = new insert();
-			i.insertdb(name, email, dateofbirth, address, username, password,cpassword, sports, animation, music, books, videogames, travel, fitness, boardgames, food, tvmovies, youtubemedia, arts);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/successreg.jsp");
-  	      dispatcher.forward(request, response);
+		if(count != 0)
+		{
+		update u = new update();
+		u.updatedb(name, email,address, uname, password,cpassword, sports, animation, music, books, videogames, travel, fitness, boardgames, food, tvmovies, youtubemedia, arts);
+		request.setAttribute("updatedmessage", "Profile is edited and saved");
+		request.setAttribute("uname", uname);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
+	      dispatcher.forward(request, response);
 		}
 		else
 		{
-			String error = wname + "\n" + wemail + "\n" + wdob + "\n" + winterest + "\n" + waddress + "\n" + wusername + "\n" + wpassword;
-			System.out.println(error);
-			request.setAttribute("Errormessage", error);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/retry.jsp");
-  	        dispatcher.forward(request, response);
+			update u = new update();
+			u.updatedb1(name,email,address,uname,password,cpassword);
+			request.setAttribute("updatedmessage", "Profile is edited and saved");
+		request.setAttribute("uname", uname);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
+		      dispatcher.forward(request, response);
+		}
+		}
+		else
+		{
+			
+			String error = wname + "\n" + wemail + "\n" + waddress + "\n" + wpassword;
+            request.setAttribute("loginError",error);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/profile1.jsp");
+    		dispatcher.forward(request, response);
+		}
+	}
 
-		}					
-
-}
 }

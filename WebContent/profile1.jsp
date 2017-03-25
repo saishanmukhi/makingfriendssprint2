@@ -20,14 +20,20 @@
 }
 </style>
 </head>
+<c:if test="${not empty updatedmessage}">
+    <script>alert("Profile is edited and saved");
+</script>
+</c:if>
+<c:if test="${not empty loginError}">
+    <script>alert("Enter valid Credentials.Try Again!");
+</script>
+</c:if>
 <body>
-
-
 <form action="profile" method="post">
+<div class="page-header">
+<input type ="button" class ="btn btn-info" value ="EDIT" disabled="disabled" id ="EDIT"/>
+</div>
 <table>
-<tr>
-<td align="center"><input type ="button" value ="EDIT" disabled="disabled" id ="EDIT"/></td>
-</tr>
 <tr>
 <th>NAME</th>
 	<td><input type = "text" name = "name"  value='${pname}' id="name" /></td>
@@ -81,7 +87,7 @@
 	<td><input type = "password" name = "confirmpassword" placeholder="******" value='${ppassword}' id="cpassword" /></td>
 </tr>
 <tr>
-<td align="center"><input type ="submit" value ="SUBMIT"  id ="submit"/></td>
+<td align="center"><input type ="submit" class ="btn btn-info" value ="SUBMIT"  id ="submit"/></td>
 </tr>
 </table>
 </form>

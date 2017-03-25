@@ -7,6 +7,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>PROFILE</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width = device-width, initial-scale = 1">
+<title>SIGN UP</title>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+.page-header{
+	text-align: center;
+}
+</style>
 </head>
 <body>
 
@@ -34,9 +46,12 @@ function myfunction(){
 }
 
 </script>
+<div class="page-header">
+<h1>PROFILE</h1>
+</div>
 <table>
 <tr>
-<td align="center"><a href="profile1.jsp"> <input type ="button" value ="EDIT" onclick="myfunction()" id ="EDIT"/></a></td>
+<td><a href="profile1.jsp"> <input type ="button" class ="btn btn-info" value ="EDIT" onclick="myfunction()" id ="EDIT"/></a></td>
 </tr>
 <tr>
 <th>NAME</th>
@@ -53,72 +68,69 @@ function myfunction(){
 <tr>
 <th>INTERESTS</th>
 </tr>
-
-
     
 <c:forEach var="values" items = "${arrayList}">
 
 <tr>
-<td align="left">
+<td>
 <c:choose>
 
 <c:when test="${values eq 'sports' }">
 <input type = "checkbox" name ="sports" value ="Sports" checked="checked" disabled ="disabled" id="sports" />Sports </c:when></c:choose></td>
     
-<td align="center">
+<td>
 <c:choose>
 <c:when test="${values eq 'animation' }">
 <input type = "checkbox"  name ="animation" value ="Animation" checked="checked" disabled ="disabled" id="animation"/>Animation</c:when>
 
 </c:choose></td>
-<td align="right">
+<td>
 <c:choose>
 <c:when test="${values eq 'music' }">
 <input type = "checkbox" name ="music" value ="Music" checked="checked" disabled ="disabled" id="music"/>Music</c:when></c:choose></td>
 </tr>
 <tr>
-<td align="left">
+<td>
 <c:choose>
 <c:when test="${values eq 'books' }">
 <input type = "checkbox" name ="books" value ="Books" checked="checked" disabled ="disabled" id="books"/>Books</c:when></c:choose></td>
-<td align="center">
+<td>
 <c:choose>
 <c:when test="${values eq 'videogames' }">
 <input type = "checkbox" name ="videogames" value ="Video Games" checked="checked" disabled ="disabled" id="videogames"/>Video Games</c:when></c:choose></td>
-<td align="right">
+<td>
 <c:choose>
 <c:when test="${values eq 'travel' }">
 <input type = "checkbox" name ="travel" value = "Travel" checked="checked" disabled ="disabled" id="travel"/>Travel</c:when></c:choose></td>
 </tr>
 <tr>
-<td align="left">
+<td>
 <c:choose>
 <c:when test="${values eq 'fitness' }">
 <input type = "checkbox" name ="fitness" value ="Fitness" checked="checked" disabled ="disabled" id="fitness"/>Fitness</c:when></c:choose></td>
-<td align="center">
+<td>
 <c:choose>
 <c:when test="${values eq 'boardgames' }">
 <input type = "checkbox" name ="boardgames" value ="Board Games" checked="checked" disabled ="disabled" id="boardgames" />Board Games</c:when></c:choose></td>
-<td align="right">
+<td>
 <c:choose>
 <c:when test="${values eq 'food' }">
 <input type = "checkbox" name ="food" value ="Food" checked="checked" disabled ="disabled" id="food"/>Food</c:when></c:choose></td>
 </tr>
 <tr>
-<td align="left">
+<td>
 <c:choose>
 <c:when test="${values eq 'tvmovies' }">
 <input type = "checkbox" name ="tvmovies" value ="TV/Movies" checked="checked" disabled ="disabled" id="tvmovies"/>TV/Movies</c:when></c:choose></td>
-<td align="center">
+<td>
 <c:choose>
 <c:when test="${values eq 'youtubemedia' }">
 <input type = "checkbox" name ="youtubemedia" value ="Youtube/Media" checked="checked" disabled ="disabled" id="youtubemedia" />Youtube/Media</c:when></c:choose></td>
-<td align="right">
+<td>
 <c:choose>
 <c:when test="${values eq 'arts' }">
 <input type = "checkbox" name ="arts" value ="Arts" checked="checked" disabled ="disabled" id="arts"/>Arts</c:when></c:choose></td>
 </tr>
-
 </c:forEach>
 <tr>
 <th>ADDRESS</th>
@@ -137,9 +149,8 @@ function myfunction(){
 	<td><input type = "password" name = "confirmpassword" placeholder="******" disabled="disabled" value='${cpassword}' id="cpassword" /></td>
 </tr>
 <tr>
-<td align="center"><input type ="submit" value ="SUBMIT" disabled="disabled" id ="submit"/></td>
+<td align="center"><input type ="submit" class ="btn btn-info" value ="SUBMIT" disabled="disabled" id ="submit"/></td>
 </tr>
 </table>
-</form>
 </body>
 </html>
