@@ -12,7 +12,7 @@ public class testdatabaseconnection {
 	public void databaseConnectionTest()
 	{
 		dbconnect h1 = new dbconnect();
-		assertNotNull("connecting to database",h1.connect());
+		assertNotNull(h1.connect());
 		
 	}
 }

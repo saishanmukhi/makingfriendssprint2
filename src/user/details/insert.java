@@ -35,5 +35,66 @@ public class insert
 			System.out.println(e.getMessage());
 		}
     }
+	public String selectdb(String username2)
+	{
+		String testname="";
+		dbconnect db = new dbconnect();
+		Connection con = db.connect();
+		try
+		{
+		Statement st1 = con.createStatement();
+		String q2 = "select name from userdata where username = '"+username2+"'";
+		ResultSet rs = st1.executeQuery(q2);
+		while(rs.next())
+		{
+			testname = rs.getString("name");
+			System.out.println(testname);
+			return testname;
+		}
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return testname;
+		
+	}
+	public String selectdb1(String username1)
+	{
+		String testinterest="";
+		dbconnect db = new dbconnect();
+		Connection con = db.connect();
+		try
+		{
+		Statement st2 = con.createStatement();
+		String q2 = "select concat_ws(\",\", (case when sports = 1 then 'sports' end),\n" +
+                " (case when animation = 1 then 'animation' end),\n" +
+                " (case when music = 1 then 'music' end),\n" +
+                 " (case when books = 1 then 'books' end)," +
+                 " (case when videogames = 1 then 'videogames' end)," +
+                 " (case when travel = 1 then 'travel' end),"+
+                 " (case when fitness = 1 then 'fitness' end),"+
+                 " (case when boardgames = 1 then 'boardgames' end),"+
+                 " (case when food = 1 then 'food' end),"+
+                 " (case when tvmovies = 1 then 'tvmovies' end),"+
+                 " (case when youtubemedia = 1 then 'youtubemedia' end),"+
+                 " (case when arts = 1 then 'arts' end)"+
+                ") from interest where username='"+username1+"' ";
+		ResultSet rs1 = st2.executeQuery(q2);
+		while(rs1.next())
+		{
+			testinterest = rs1.getString(1);
+			System.out.println(testinterest);
+			return testinterest;
+		}
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return testinterest;
+		
+	}
+	
 
 }
