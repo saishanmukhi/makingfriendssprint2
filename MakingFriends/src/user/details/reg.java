@@ -291,21 +291,16 @@ public class reg extends HttpServlet {
 		{
 			insert i = new insert();
 			i.insertdb(name, email, dateofbirth, address, username, password,cpassword, sports, animation, music, books, videogames, travel, fitness, boardgames, food, tvmovies, youtubemedia, arts);
-			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/successreg.jsp");
-  	      	dispatcher.forward(request, response);
+  	      dispatcher.forward(request, response);
 		}
 		else
 		{
-			String error = wname + "\r\n" + wemail + "\r\n" + wdob + "\r\n" + winterest + "\r\n" + waddress + "\r\n" + wusername + "\r\n" + wpassword;
-			/*PrintWriter out1 = response.getWriter();
-			out1.print("<html><head>");
-			out1.print("<script type=\"text/javascript\">alert(" + error + ");</script>");
-			out1.print("</head><body></body></html>");*/
+			String error = wname + "\n" + wemail + "\n" + wdob + "\n" + winterest + "\n" + waddress + "\n" + wusername + "\n" + wpassword;
 			System.out.println(error);
-			request.getSession().setAttribute("Errormessage", error);
+			request.setAttribute("Errormessage", error);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/retry.jsp");
-  	        dispatcher.include(request, response);
+  	        dispatcher.forward(request, response);
 
 		}					
 

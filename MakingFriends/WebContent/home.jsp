@@ -12,17 +12,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>HOME</title>
-<style>
-.btn {
-    margin-right: 5px;
-}
-</style>
 </head>
-<c:if test="${not empty updatedmessage}">
-    <script>
-    alert("Profile saved");
-</script>
-</c:if>
+<style>
+.RbtnMargin { margin-left: 10px; }
+</style>
 
 <body>
 <div class = "container">
@@ -32,12 +25,11 @@
         <form action="profile" method="get">
 		<input type ="submit" name="PROFILE" button class ="btn btn-info" value ="PROFILE"/>
 		</form>
-        <a href="login.jsp"><input type ="button" button class ="btn btn-info" value ="LOGOUT"/></a>
+        <a href="login.jsp"><input type ="submit" button class ="btn btn-info" value ="LOGOUT"/></a>
     </div>
  </div>
 <h3 align ="left" >Hello,</h3>
 <h3>${uname}</h3>
-
 </div>
 </body>
 </html>

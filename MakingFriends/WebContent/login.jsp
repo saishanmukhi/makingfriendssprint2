@@ -11,33 +11,31 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>HOME</title>
-<style>
-.btn {
-    margin-right: 5px;
-}
-</style>
+<title>LOGIN</title>
 </head>
-<c:if test="${not empty updatedmessage}">
-    <script>
-    alert("Profile saved");
+<c:if test="${not empty loginError}">
+    <script>alert("Enter valid Credentials.Try Again!");
 </script>
 </c:if>
-
 <body>
-<div class = "container">
-<div class = "page-header">
-<h1>Welcome !</h1>
-    <div class="btn-toolbar pull-right">
-        <form action="profile" method="get">
-		<input type ="submit" name="PROFILE" button class ="btn btn-info" value ="PROFILE"/>
-		</form>
-        <a href="login.jsp"><input type ="button" button class ="btn btn-info" value ="LOGOUT"/></a>
-    </div>
- </div>
-<h3 align ="left" >Hello,</h3>
-<h3>${uname}</h3>
+<div class="container">
+<div class="page-header">
 
+<h3>LOGIN</h3>
+</div>
+<form action="login" method="post">
+<table>
+<tr>
+<th>USERNAME</th>
+	<td><input type = "text" name = "username"/></td>
+</tr>
+<tr>
+<th>PASSWORD</th>
+	<td><input type = "password" name = "password"/></td>
+</tr>
+</table>
+<input type ="submit" class ="btn btn-info" value ="LOGIN"/>
+</form>
 </div>
 </body>
 </html>

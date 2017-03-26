@@ -77,7 +77,7 @@
 <!-- First Container -->
 <div class="container-fluid bg-1 text-center">
   <h3 class="margin">Making Friends</h3>
-  <img src="http://www.hotwater911.com/wp-content/uploads/2011/08/HotWater911-Making-Friends.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350">
+  <img src="http://www.mtv.co.uk/sites/default/files/styles/image-w-520-h-292-scale-crop/public/mtv_uk/articles/2014/09/22/20-things-friends-taught-us-nav.jpg?itok=Xtw731GY" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350">
   <h3>Join in and socialize!</h3>
 </div>
 

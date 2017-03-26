@@ -14,7 +14,7 @@
   
 </head>
 <body>
-<h3>${Errormessage}</h3>
+<p>${Errormessage}</p>
 <table>
 <tr>
 <td><a href="register.jsp"><input type ="submit" value ="RETRY"/></a></td>

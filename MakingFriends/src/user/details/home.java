@@ -45,7 +45,6 @@ public class home extends HttpServlet {
 		response.setContentType("text/html");
 		String uname = (String) request.getAttribute("uname");
 		session.setAttribute("uname", uname);
-		//request.getAttribute("updatedmessage");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
 	      dispatcher.forward(request, response);
 		

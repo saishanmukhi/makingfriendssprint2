@@ -20,12 +20,16 @@
 }
 </style>
 </head>
+<c:if test="${not empty updatedmessage}">
+    <script>alert("Profile is edited and saved");
+</script>
+</c:if>
 <c:if test="${not empty loginError}">
-    <script>alert("Enter valid Details.Try Again!");
+    <script>alert("Enter valid Credentials.Try Again!");
 </script>
 </c:if>
 <body>
-<form action="profile" method="post">
+<form action="profile1" method="post">
 <div class="page-header">
 <input type ="button" class ="btn btn-info" value ="EDIT" disabled="disabled" id ="EDIT"/>
 </div>

@@ -1,7 +1,6 @@
 package user.details;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -108,7 +107,7 @@ public class profile extends HttpServlet {
 	    }
 		session.setAttribute("uname",uname);
 	 RequestDispatcher dispatcher = request.getRequestDispatcher("/profile.jsp");
-     dispatcher.include(request, response);
+     dispatcher.forward(request, response);
 	     // session.setAttribute("uname",uname);
 		System.out.println("username in profile" + uname);
 	}
@@ -120,8 +119,8 @@ public class profile extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		//String returnPage="default.jsp";
-		HttpSession session1 = request.getSession();
+		String returnPage="default.jsp";
+		//HttpSession session1 = request.getSession();
 		//response.setContentType("text/html");
 		//String username = request.getParameter("username").toString();
 		//System.out.println(username);
@@ -332,8 +331,8 @@ public class profile extends HttpServlet {
 		String pq = "Profile saved";
 		request.setAttribute("updatedmessage",pq);
 		request.setAttribute("uname", uname);
-		RequestDispatcher dispatcher1 = request.getRequestDispatcher("/home");
-		dispatcher1.forward(request, response);
+		response.sendRedirect("/home"); 
+		//RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
 		}
 		else
 		{
@@ -342,21 +341,18 @@ public class profile extends HttpServlet {
 			String pq = "Profile saved";
 			request.setAttribute("updatedmessage",pq);
 			request.setAttribute("uname", uname);
-			RequestDispatcher dispatcher1 = request.getRequestDispatcher("/home");
-		    dispatcher1.forward(request, response);
+			response.sendRedirect("/home"); 
+			//RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
+		    //dispatcher.forward(request, response);
 		}
 		}
 		else
 		{
 			
 			String error = wname + "\n" + wemail + "\n" + waddress + "\n" + wpassword;
-			
-           request.setAttribute("loginError",error);
-            response.setContentType("text/html");
-            PrintWriter pw = response.getWriter();
-            pw.println("<h1>" + error + "</h1>");
-           RequestDispatcher dispatcher = request.getRequestDispatcher("/profile1.jsp");
-    		dispatcher.forward(request, response);
+            request.setAttribute("loginError",error);
+           // RequestDispatcher dispatcher = request.getRequestDispatcher("/profile1.jsp");
+    		//dispatcher.forward(request, response);
 		}
 		
 	}
