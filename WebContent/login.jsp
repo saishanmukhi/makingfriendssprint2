@@ -14,11 +14,19 @@
 <title>LOGIN</title>
 </head>
 <c:if test="${not empty loginError}">
-    <script>alert("Enter valid Credentials.Try Again!");
+    <script>alert("Incorrect Username or Password.Try Again!");
 </script>
 </c:if>
 <body>
 <div class="container">
+<div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" align="left" href="#">MakingFriends.com</a>
+    </div>
 <div class="page-header">
 
 <h3>LOGIN</h3>
