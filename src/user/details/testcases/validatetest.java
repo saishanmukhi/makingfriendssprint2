@@ -1,7 +1,7 @@
 /**
  * 
  */
-package user.details;
+package user.details.testcases;
 import user.details.validate;
 
 import static org.junit.Assert.*;

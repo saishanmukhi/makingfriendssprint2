@@ -11,38 +11,34 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>HOME</title>
-<style>
-.btn {
-    margin-right: 5px;
-}
-</style>
+<title>MATCH</title>
 </head>
-<c:if test="${not empty updatedmessage}">
-    <script>
-    alert("Profile saved");
-</script>
-</c:if>
-
 <body>
-<div class = "container">
-<div class = "page-header">
-<h1>Welcome !</h1>
-    <div class="btn-toolbar pull-right">
-        <form action="profile" method="get">
-		<input type ="submit" name="PROFILE" button class ="btn btn-info" value ="PROFILE"/>
-		</form>
-        <a href="login.jsp"><input type ="button" button class ="btn btn-info" value ="LOGOUT"/></a>
+<div class="container">
+<div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" align="left" href="#">MakingFriends.com</a>
     </div>
- </div>
- <h3 align ="left" >Hello,</h3>
-<h3>${uname}</h3>
-<form action="matchuser" method="post">
-<input type ="submit" name="MATCH" button class ="btn btn-info" value ="MATCH"/>
-</form>
-<form action="meet" method="post">
-<input type ="submit" name="MEET" button class ="btn btn-info" value ="MEET"/>
-</form>
 </div>
+<h3>Hello,${uname}</h3>
+   <table border ="5">
+   <tr>
+   <th>Username</th>
+   <th>Count of Matching Interests</th>
+   </tr>
+   <c:forEach var="map" items="${map}" >
+   <tr>
+    <td>${map.key}</td>
+    <td>${map.value}</td>
+    </tr>
+</c:forEach>
+</table>
+<form action="message" method="post">
+<input type ="submit" name="SendMessage" button class ="btn btn-info" value ="SENDMESSAGE"/>
+</form>
 </body>
 </html>

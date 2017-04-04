@@ -120,7 +120,6 @@ public class profile extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		//String returnPage="default.jsp";
 		HttpSession session1 = request.getSession();
 		//response.setContentType("text/html");
 		//String username = request.getParameter("username").toString();
