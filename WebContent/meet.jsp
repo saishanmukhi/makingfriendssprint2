@@ -13,15 +13,38 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>MEET</title>
 </head>
+<style>
+table.ex1 {
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+</style>
 <body>
-${uname}
-<div class = "container">
+<div class="container">
+<div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" align="left" href="#">MakingFriends.com</a>
+    </div>
+    </div>
+<input type="hidden" name="uname" value='${uname}'/>
+
+
+<table class = "ex1">
+
 <form action="settime" method="post">
-<input type ="submit" name="Set Availability" button class ="btn btn-info" value ="Set Availability"/>
+<tr>
+<td><input type ="submit" name="Set Availability" button class ="btn btn-info" value ="Set Availability"/></td>
+</tr>
 </form>
 <form action="search" method="post">
-<input type ="submit" name="Search" button class ="btn btn-info" value ="Search"/>
+<tr>
+<td><input type ="submit" name="Search" button class ="btn btn-info" value ="Search"/></td>
+</tr>
 </form>
-</div>
+</table>
 </body>
 </html>

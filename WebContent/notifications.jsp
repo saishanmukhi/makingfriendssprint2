@@ -11,27 +11,18 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>SETTIME</title>
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script>
-            $(function () {
-            	$("#datepicker").datepicker({
-            		  minDate: 0,
-            		 dateFormat: 'yy-mm-dd'
-            		});
-
-            });
-        </script>
-      <style>
-table.ex1 {
-    border-collapse: separate;
-    border-spacing: 10px;
+<title>Notifications</title>
+</head>
+<style type="text/css">
+th
+{
+    padding:0 15px 0 15px;
+}
+td
+{
+    padding:0 15px 0 15px;
 }
 </style>
-
-</head>
 <body>
 <div class="container">
 <div class="navbar-header">
@@ -41,28 +32,21 @@ table.ex1 {
         <span class="icon-bar"></span>                        
       </button>
       <a class="navbar-brand" align="left" href="#">MakingFriends.com</a>
-    </div>    	
-  </div>
-<form action="timeinsert" method="post">
-<table class = "ex1">
-<tr>
-<th>DATE</th>
-	<td><input type ="text" name = "date1" placeholder="yyyy-mm-dd" id = "datepicker"/></td>
-</tr>
-
-<tr>
-<th>From</th>
-	<td><input type ="text" name ="from" placeholder="HH:MM"/></td>
-	
-<th>To</th>
-	<td><input type ="text" name = "to" placeholder="HH:MM"/></td>
-</tr>
-<tr>
-<td align="center"><input type ="submit" value ="SUBMIT"/></td>
-</tr>
-<tr>
-<td><input type="hidden" name="uname" value='${uname}'/></td>
-</tr>
+    </div>
+</div>
+ <table border ="5" align="Center">
+   <tr>
+   <th>Sender</th>
+   <th>Message</th>
+   <th>Time</th>
+   </tr>
+   <c:forEach var="receivedMessage" items="${messages}" >
+   <tr>
+    <td>${receivedMessage.name}</td>
+    <td>${receivedMessage.message}</td>
+    <td>${receivedMessage.time}</td>
+    </tr>
+</c:forEach>
 </table>
 </body>
 </html>

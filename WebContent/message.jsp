@@ -22,13 +22,9 @@
         <span class="icon-bar"></span>                        
       </button>
       <a class="navbar-brand" align="left" href="#">MakingFriends.com</a>
-    </div>
-    <div class="btn-toolbar pull-right">
-        <form action="send" method="post">
-		<input type ="submit" name="SEND" button class ="btn btn-info" value ="SEND"/>
-		</form>
-    </div>
-</div>
+    </div>    	
+  </div>
+<form action="send" method="post">
 <table>
 <tr>
 <th>Recipient</th>
@@ -38,7 +34,13 @@
 <th>Message</th>
 	<td><input type ="text" name ="message"/></td>
 </tr>
+<tr>
+<td><input type ="submit" name="SEND" button class ="btn btn-info" value ="SEND"/></td>
+</tr>
+<tr>
+<td><input type="hidden" name="uname" value='${uname}'/></td>
+</tr>
 </table>
-<input type="hidden" name="uname" value='${uname}'>
+</form>
 </body>
 </html>

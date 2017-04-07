@@ -23,7 +23,16 @@
     alert("Profile saved");
 </script>
 </c:if>
-
+<c:if test="${not empty available}">
+    <script>
+    alert("Available time has been set");
+</script>
+</c:if>
+<c:if test="${not empty notifications}">
+    <script>
+    alert("No messages to display !!");
+</script>
+</c:if>
 <body>
 <div class = "container">
 <div class = "page-header">
@@ -42,6 +51,9 @@
 </form>
 <form action="meet" method="post">
 <input type ="submit" name="MEET" button class ="btn btn-info" value ="MEET"/>
+</form>
+<form action="notification" method="post">
+<input type ="submit" name="NOTIFICATIONS" button class ="btn btn-info" value ="NOTIFICATIONS"/>
 </form>
 </div>
 </body>

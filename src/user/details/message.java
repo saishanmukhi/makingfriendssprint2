@@ -47,22 +47,11 @@ public class message extends HttpServlet {
 		doGet(request, response);
 		HttpSession session = request.getSession();
 		uname = (String) session.getAttribute("uname");
-		 matchuser mu = new matchuser();
-		 map = mu.getUser(uname);
-		 System.out.println("new map ");
-		 
-		 if(map.containsKey("shanmukhi"))
-		 {
-			 System.out.println("tested true");
-		 }
-		 else
-		 {
-			 System.out.println("false");
-		 }
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/message.jsp");
 	     dispatcher.forward(request, response);
 	     session.setAttribute("uname", uname);
-	     session.setAttribute("map",map);
+	     //session.setAttribute("map",map);
 	     //System.out.println(map);
 	}
 
