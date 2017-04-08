@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -58,7 +60,7 @@ public class send extends HttpServlet {
 		String recipient = request.getParameter("recipient").toString();
 		String message = request.getParameter("message").toString();
 		System.out.println(recipient + message);
-		if(recipientTest(recipient)==true)
+		if(recipientTest(recipient,uname)==true)
 		{
 			System.out.println("yesss");
 			if(checkMessage(message)==true)
@@ -74,8 +76,10 @@ public class send extends HttpServlet {
 			       String q1 = "insert into messages values('"+uname+"','"+recipient+"','"+message+"','"+now+"')";
 			        st.executeUpdate(q1);
 		            System.out.println("inserted messages");
+		           /* String pq = "Message sent :Successful";
+	        		session.setAttribute("sent",pq);*/
             		session.setAttribute("uname", uname);
-            		RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
+            		RequestDispatcher dispatcher = request.getRequestDispatcher("/messagesuccess.jsp");
             	    dispatcher.forward(request, response);
             	    st.close();
 			        con.close();
@@ -87,25 +91,29 @@ public class send extends HttpServlet {
 			}
 			else
 			{
-	           /*	RequestDispatcher dispatcher = request.getRequestDispatcher("/message.jsp");
-		        request.setAttribute("sendError","No Message is Written");
-	        	dispatcher.forward(request, response);*/
+				String pq = "message is empty";
+        		request.setAttribute("valid",pq);
+        		session.setAttribute("uname",uname);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/message.jsp");
+		      	dispatcher.forward(request, response);
 			}
 		}
 		else
 		{
-			/*RequestDispatcher dispatcher = request.getRequestDispatcher("/message.jsp");
-	        request.setAttribute("sendError","Incorrect Recipient");
-        	dispatcher.forward(request, response);*/
+			String pq = "Enter valid recipient";
+    		request.setAttribute("validsender",pq);
+    		session.setAttribute("uname",uname);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/message.jsp");
+        	dispatcher.forward(request, response);
 		}
 		
 	}
-	public boolean recipientTest(String recipientName)
+	public boolean recipientTest(String recipientName,String username)
 	{
 		boolean check = false;
 		
 		matchuser m = new matchuser();
-		HashMap<String, Integer> map = m.getUser(uname);
+		HashMap<String, Integer> map = m.getUser(username);
 		Set s = map.entrySet();
 		Iterator i = s.iterator();
 		while(i.hasNext())
@@ -120,9 +128,15 @@ public class send extends HttpServlet {
 	
 	public boolean checkMessage(String messageText)
 	{
-		boolean check = true;
-		if(messageText.equals("") || messageText.matches("[^\\s]+"))
-			check = false;
+		Pattern regex2 = Pattern.compile("[a-zA-Z]");
+		Matcher matcher2 = regex2.matcher(messageText);
+		boolean check = false;
+		if(messageText != null)
+		{
+			if(matcher2.find())
+				check = true;
+		}
+			
 		return check;
 	}
 

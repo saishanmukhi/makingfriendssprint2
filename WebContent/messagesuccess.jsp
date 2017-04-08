@@ -11,20 +11,21 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>MEET</title>
+<title>MESSAGESUCCESS</title>
 </head>
 <style>
-table.ex1 {
-    border-collapse: separate;
-    border-spacing: 60px;
+.btn {
+    margin: 15px auto;
 }
 body {
       font: 20px Montserrat, sans-serif;
       line-height: 1.8;
-      color: #f5f6f7;
+     
   }
+  p {font-size: 16px;}
   .margin {margin-bottom: 45px;}
-   .container-fluid {
+ 
+  .container-fluid {
       padding-top: 70px;
       padding-bottom: 70px;
   }
@@ -40,9 +41,13 @@ body {
   .navbar-nav  li a:hover {
       color: #1abc9c !important;
   }
+table{
+	margin: 0 auto;
+}
 </style>
 <body>
 <div class="container">
+<div class = "page-header">
 <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
@@ -51,20 +56,12 @@ body {
       </button>
       <a class="navbar-brand" align="left" href="#">MakingFriends.com</a>
     </div>
- <div class="container-fluid bg-1 text-center">
- <img src="https://media.tenor.co/images/b3f33ac02643a0a89f55e22a6d03e9b6/tenor.gif" class="img-responsive img-circle margin" style="display:inline" alt="people" width="400" height="300">   
-<input type="hidden" name="uname" value='${uname}'/>
-<table align ="Center" style="margin-top:0px" class = "ex1">
-<tr>
-<form action="settime" method="post">
-<td><input type ="submit" name="Set Availability" button class ="btn btn-info" value ="Set Availability"/></td>
-</form>
-<form action="search" method="post">
-<td><input type ="submit" name="Search" button class ="btn btn-info" value ="Search"/></td>
-</form>
-</tr>
-</table>
-</div>
-</div>
+    </div>
+<div class="container-fluid bg-1 text-center">
+<input type="hidden" name="uname" value='${uname}'/>	
+<h3>Message sent : Successful</h3>
+<form action="home" method="post">
+		<td><input type ="submit" name="HOME" button class ="btn btn-info" value ="HOME"/></td>
+		</form>
 </body>
 </html>

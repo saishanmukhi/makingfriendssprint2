@@ -13,6 +13,26 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>MESSAGE</title>
 </head>
+<style>
+.btn {
+    margin: 10px auto;
+}
+table.ex1 {
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+</style>
+<c:if test="${not empty valid}">
+    <script>
+    alert("Message cannot be empty !!");
+</script>
+</c:if>
+<c:if test="${not empty validsender}">
+    <script>
+    alert("Enter valid recipient !!");
+</script>
+</c:if>
+
 <body>
 <div class="container">
 <div class="navbar-header">
@@ -25,7 +45,7 @@
     </div>    	
   </div>
 <form action="send" method="post">
-<table>
+<table class = "ex1">
 <tr>
 <th>Recipient</th>
 	<td><input type = "text" name = "recipient"/></td>
@@ -35,7 +55,9 @@
 	<td><input type ="text" name ="message"/></td>
 </tr>
 <tr>
+<div class="col-md-4 text-center">
 <td><input type ="submit" name="SEND" button class ="btn btn-info" value ="SEND"/></td>
+</div>
 </tr>
 <tr>
 <td><input type="hidden" name="uname" value='${uname}'/></td>

@@ -43,7 +43,8 @@ public class meet extends HttpServlet {
 		HttpSession session = request.getSession();
 		uname = (String) session.getAttribute("uname");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/meet.jsp");
-	     dispatcher.forward(request, response);
+	    dispatcher.forward(request, response);
+	    request.setAttribute("uname", uname);
 	}
 
 }

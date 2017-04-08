@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,20 +11,19 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>MEET</title>
-</head>
+<title>Notifications</title>
 <style>
-table.ex1 {
-    border-collapse: separate;
-    border-spacing: 60px;
-}
 body {
       font: 20px Montserrat, sans-serif;
       line-height: 1.8;
       color: #f5f6f7;
   }
   .margin {margin-bottom: 45px;}
-   .container-fluid {
+  .bg-1 { 
+      background-color: red; 
+      color: #ffffff;
+  }
+  .container-fluid {
       padding-top: 70px;
       padding-bottom: 70px;
   }
@@ -41,6 +40,13 @@ body {
       color: #1abc9c !important;
   }
 </style>
+</head>
+
+<c:forEach var="receivedMessage" items="${messages}">
+    <c:out value="${receivedMessage.name}"/>
+    <c:out value="${receivedMessage.message}"/>
+    <c:out value="${receivedMessage.time}"/>
+</c:forEach>
 <body>
 <div class="container">
 <div class="navbar-header">
@@ -51,20 +57,10 @@ body {
       </button>
       <a class="navbar-brand" align="left" href="#">MakingFriends.com</a>
     </div>
- <div class="container-fluid bg-1 text-center">
- <img src="https://media.tenor.co/images/b3f33ac02643a0a89f55e22a6d03e9b6/tenor.gif" class="img-responsive img-circle margin" style="display:inline" alt="people" width="400" height="300">   
-<input type="hidden" name="uname" value='${uname}'/>
-<table align ="Center" style="margin-top:0px" class = "ex1">
-<tr>
-<form action="settime" method="post">
-<td><input type ="submit" name="Set Availability" button class ="btn btn-info" value ="Set Availability"/></td>
-</form>
-<form action="search" method="post">
-<td><input type ="submit" name="Search" button class ="btn btn-info" value ="Search"/></td>
-</form>
-</tr>
-</table>
 </div>
-</div>
+
+<div class="container-fluid bg-1 text-center">
+<img src="https://img.memesuper.com/ed9281ed9a49fce806e75a04c006f781_78-best-images-about-old-tv-mail-time-blues-clues-meme_500-372.gif" class="img-responsive img-circle margin" style="display:inline" alt="gain" width="350" height="350">
+<h3>YOU GOT MAIL!</h3>
 </body>
 </html>

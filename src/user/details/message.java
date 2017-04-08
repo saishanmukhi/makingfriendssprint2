@@ -47,10 +47,10 @@ public class message extends HttpServlet {
 		doGet(request, response);
 		HttpSession session = request.getSession();
 		uname = (String) session.getAttribute("uname");
-		
+		session.setAttribute("uname", uname);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/message.jsp");
 	     dispatcher.forward(request, response);
-	     session.setAttribute("uname", uname);
+	    //session.setAttribute("uname", uname);
 	     //session.setAttribute("map",map);
 	     //System.out.println(map);
 	}

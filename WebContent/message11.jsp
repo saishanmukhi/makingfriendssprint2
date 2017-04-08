@@ -11,20 +11,20 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>MEET</title>
-</head>
-<style>
-table.ex1 {
-    border-collapse: separate;
-    border-spacing: 60px;
-}
-body {
+<title>MESSAGE</title>
+ <style>
+  body {
       font: 20px Montserrat, sans-serif;
       line-height: 1.8;
       color: #f5f6f7;
   }
+  p {font-size: 16px;}
   .margin {margin-bottom: 45px;}
-   .container-fluid {
+  .bg-1 { 
+      background-color: red; 
+      color: #ffffff;
+  }
+  .container-fluid {
       padding-top: 70px;
       padding-bottom: 70px;
   }
@@ -40,7 +40,11 @@ body {
   .navbar-nav  li a:hover {
       color: #1abc9c !important;
   }
-</style>
+table{
+	margin: 0 auto;
+}
+  </style>
+</head>
 <body>
 <div class="container">
 <div class="navbar-header">
@@ -50,21 +54,29 @@ body {
         <span class="icon-bar"></span>                        
       </button>
       <a class="navbar-brand" align="left" href="#">MakingFriends.com</a>
-    </div>
- <div class="container-fluid bg-1 text-center">
- <img src="https://media.tenor.co/images/b3f33ac02643a0a89f55e22a6d03e9b6/tenor.gif" class="img-responsive img-circle margin" style="display:inline" alt="people" width="400" height="300">   
-<input type="hidden" name="uname" value='${uname}'/>
-<table align ="Center" style="margin-top:0px" class = "ex1">
+    </div>    	
+  </div>
+
+<div class="container-fluid bg-1 text-center">
+<form action="send" method="post">
+<table>
 <tr>
-<form action="settime" method="post">
-<td><input type ="submit" name="Set Availability" button class ="btn btn-info" value ="Set Availability"/></td>
-</form>
-<form action="search" method="post">
-<td><input type ="submit" name="Search" button class ="btn btn-info" value ="Search"/></td>
-</form>
+<th>Recipient</th>
+	<td><input type = "text" name = "recipient"/></td>
+</tr>
+<tr>
+<th>Message</th>
+	<td><input type ="text" name ="message"/></td>
+</tr>
+<tr>
+<td><input type ="submit" name="SEND" button class ="btn btn-info" value ="SEND"/></td>
+</tr>
+<tr>
+<td><input type="hidden" name="uname" value='${uname}'/></td>
 </tr>
 </table>
-</div>
+</form>
+ <img src="http://25.media.tumblr.com/45b282472ef16a99ab0cda3ed282d7d3/tumblr_mig85jWNzC1qc58tto1_400.gif" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350">
 </div>
 </body>
 </html>
