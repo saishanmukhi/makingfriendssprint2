@@ -24,6 +24,27 @@
 
             });
         </script>
+        <c:if test="${not empty mintime}">
+    <script>
+    alert("Atleast 30 minutes should be available");
+</script>
+</c:if>
+
+<c:if test="${not empty totime}">
+    <script>
+    alert("Set valid to time");
+</script>
+</c:if>
+<c:if test="${not empty fromtime}">
+    <script>
+    alert("Set valid From time");
+</script>
+</c:if>
+<c:if test="${not empty datetime}">
+    <script>
+    alert("Select Valid Date");
+</script>
+</c:if>
       <style>
 table.ex1 {
     border-collapse: separate;
@@ -82,10 +103,10 @@ body {
 
 <tr>
 <th>FROM</th>
-	<td><input type ="text" name ="from" placeholder="HH:MM"/></td>
+	<td><input type ="text" name ="from" placeholder="00:00"/></td>
 	
 <th>TO</th>
-	<td><input type ="text" name = "to" placeholder="HH:MM"/></td>
+	<td><input type ="text" name = "to" placeholder="23:59"/></td>
 </tr>
 <tr>
 <td align="center"><input type ="submit" value ="SUBMIT"/></td>

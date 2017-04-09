@@ -57,7 +57,7 @@ public class notification extends HttpServlet {
 		response.setContentType("text/html");
 		ArrayList<receivedMessage>text;
 		text = new ArrayList<receivedMessage>();
-		try
+		/*try
 		{
 			dbconnect db = new dbconnect();
 			Connection con = db.connect();
@@ -72,15 +72,16 @@ public class notification extends HttpServlet {
             	message = rs.getString(2);
             	datetime = rs.getTimestamp(3);
             	text.add(new receivedMessage(sender,message,datetime));
-             }
-            System.out.println(sender + message + datetime);
+             }*/
+			text=getnotification(uname);
+            //System.out.println(sender + message + datetime);
             if(text.isEmpty())
     		{
     			
-    			String pq = "No notifications";
-        		request.setAttribute("notifications",pq);
-        		request.setAttribute("uname",uname);
-    	      	RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
+    			//String pq = "No notifications";
+        		//session.setAttribute("notifications",pq);
+        		session.setAttribute("uname",uname);
+    	      	RequestDispatcher dispatcher = request.getRequestDispatcher("/nonotifications.jsp");
     		    dispatcher.forward(request, response);
     		}
     		else
@@ -92,11 +93,39 @@ public class notification extends HttpServlet {
     		    dispatcher.forward(request, response);
     		}
            
+		/*}
+		catch(SQLException e)
+        {
+            System.out.println(e.getMessage());    
+        }*/
+	}
+	public ArrayList<receivedMessage> getnotification(String uname)
+	{
+		ArrayList<receivedMessage>text1;
+		text1 = new ArrayList<receivedMessage>();
+		try
+		{
+			dbconnect db = new dbconnect();
+			Connection con = db.connect();
+			Statement st = con.createStatement();
+            String q1 = "select username,message,date from messages where receiver = '"+uname+"'";
+            ResultSet rs = st.executeQuery(q1);
+            String sender=null,message=null;
+            Timestamp datetime=null;
+            while(rs.next())
+            {
+            	sender =rs.getString(1);
+            	message = rs.getString(2);
+            	datetime = rs.getTimestamp(3);
+            	text1.add(new receivedMessage(sender,message,datetime));
+             }
+            System.out.println(sender + message + datetime);
 		}
 		catch(SQLException e)
         {
             System.out.println(e.getMessage());    
         }
+		return text1;
 	}
 
 }

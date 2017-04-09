@@ -11,19 +11,17 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>MESSAGE</title>
- <style>
-  body {
+<title>NOSEARCH</title>
+</head>
+<style>
+body {
       font: 20px Montserrat, sans-serif;
       line-height: 1.8;
-      color: #f5f6f7;
+      
   }
   p {font-size: 16px;}
   .margin {margin-bottom: 45px;}
-  .bg-1 { 
-      background-color: red; 
-      color: #ffffff;
-  }
+ 
   .container-fluid {
       padding-top: 70px;
       padding-bottom: 70px;
@@ -40,11 +38,7 @@
   .navbar-nav  li a:hover {
       color: #1abc9c !important;
   }
-table{
-	margin: 0 auto;
-}
-  </style>
-</head>
+</style>
 <body>
 <div class="container">
 <div class="navbar-header">
@@ -54,29 +48,15 @@ table{
         <span class="icon-bar"></span>                        
       </button>
       <a class="navbar-brand" align="left" href="#">MakingFriends.com</a>
-    </div>    	
-  </div>
-
+    </div>
+</div>
 <div class="container-fluid bg-1 text-center">
-<form action="send" method="post">
-<table>
-<tr>
-<th>Recipient</th>
-	<td><input type = "text" name = "recipient"/></td>
-</tr>
-<tr>
-<th>Message</th>
-	<td><input type ="text" name ="message"/></td>
-</tr>
-<tr>
-<td><input type ="submit" name="SEND" button class ="btn btn-info" value ="SEND"/></td>
-</tr>
-<tr>
-<td><input type="hidden" name="uname" value='${uname}'/></td>
-</tr>
-</table>
+<h3>Hello,${uname}</h3>
+<h5>No users are available to meet !</h5>
+
+<form action="home" method="post">
+<td><input type ="submit" name="HOME" button class ="btn btn-info" value ="HOME"/></td>
 </form>
- <img src="http://25.media.tumblr.com/45b282472ef16a99ab0cda3ed282d7d3/tumblr_mig85jWNzC1qc58tto1_400.gif" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350">
 </div>
 </body>
 </html>

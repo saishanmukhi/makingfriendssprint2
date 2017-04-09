@@ -29,16 +29,7 @@ table.ex1 {
     alert("Profile saved");
 </script>
 </c:if>
-<c:if test="${not empty available}">
-    <script>
-    alert("Available time has been set");
-</script>
-</c:if>
-<c:if test="${not empty notifications}">
-    <script>
-    alert("No messages to display !!");
-</script>
-</c:if>
+
 <body>
 <div class = "container">
 <div class = "page-header">
