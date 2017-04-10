@@ -1,15 +1,15 @@
 package user.details;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
-import java.text.SimpleDateFormat;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -52,7 +52,7 @@ public class search extends HttpServlet {
 		doGet(request, response);
 		HttpSession session = request.getSession();
 		uname = (String) session.getAttribute("uname");
-		PrintWriter out = response.getWriter();
+	
 		response.setContentType("text/html");
 		ArrayList<String> listp = new ArrayList<String>();
 		try
@@ -73,7 +73,8 @@ public class search extends HttpServlet {
             
             System.out.println(date2 + from1 + to1);
             st.close();
-            listp= searchuser(date2,from1,to1);
+            searchuserclass suc=new searchuserclass();
+            listp= suc.searchuser(uname,date2,from1,to1);
             if(listp.isEmpty())
             {
             	
@@ -97,28 +98,5 @@ public class search extends HttpServlet {
             System.out.println(e.getMessage());    
         }
 	}
-	public ArrayList<String> searchuser(String date2,Time from1,Time to1)
-	{
-		try
-		{
-			dbconnect db = new dbconnect();
-			Connection con = db.connect();
-			Statement st1 = con.createStatement();
-            String q2 = "select username from freetime where (date1 = '"+date2+"' and ((from1 >= '"+from1+"' and to1 <= '"+to1+"') or (from1 > '"+from1+"' and from1 < '"+to1+"' and to1 > '"+to1+"') or (from1 < '"+from1+"' and to1 > '"+from1+"'))) and username != '"+uname+"' ";
-            ResultSet rs1 = st1.executeQuery(q2);
-            while(rs1.next())
-            {
-              	String person = rs1.getString(1);
-            	System.out.println(person);
-            	list.add(person);
-            }
-            st1.close();
-		}
-		catch(SQLException e)
-        {
-            System.out.println(e.getMessage());    
-        }
-		return list;
-	}
-
+	
 }

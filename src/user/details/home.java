@@ -1,7 +1,7 @@
 package user.details;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,7 +40,7 @@ public class home extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		PrintWriter out = response.getWriter();
+		
 		HttpSession session = request.getSession();
 		response.setContentType("text/html");
 		String uname = (String)session.getAttribute("uname");

@@ -1,7 +1,6 @@
 package user.details;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,18 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class message
+ * Servlet implementation class logout
  */
-@WebServlet("/message")
-public class message extends HttpServlet {
+@WebServlet("/logout")
+public class logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	String uname;
-	HashMap<String, Integer> map = new HashMap<String, Integer>();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public message() {
+    public logout() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,11 +40,10 @@ public class message extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		HttpSession session = request.getSession();
-		uname = (String) session.getAttribute("uname");
-		session.setAttribute("uname", uname);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/message.jsp");
-	     dispatcher.forward(request, response);
-	   
+		response.setContentType("text/html");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/index1.jsp");
+	      dispatcher.forward(request, response);
+	      session.invalidate();  
 	}
 
 }

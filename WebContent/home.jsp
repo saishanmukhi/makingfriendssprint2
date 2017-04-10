@@ -40,8 +40,10 @@ table.ex1 {
         <form action="profile" method="get">
 		<td><input type ="submit" name="PROFILE" button class ="btn btn-info" value ="PROFILE"/></td>
 		</form>
-        <td><a href="login.jsp"><input type ="button" button class ="btn btn-info" value ="LOGOUT"/></a></td>
-        </tr>
+		<form action="logout" method="post">
+		<td><input type ="submit" name="LOGOUT" button class ="btn btn-info" value ="LOGOUT"/></td>
+		</form>
+         </tr>
         </table>
     </div>
  </div>

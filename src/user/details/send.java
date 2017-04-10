@@ -2,11 +2,9 @@ package user.details;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.time.LocalDateTime;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -55,7 +53,7 @@ public class send extends HttpServlet {
 		doGet(request, response);
 		HttpSession session = request.getSession();
 		uname = (String) session.getAttribute("uname");
-		PrintWriter out = response.getWriter();
+		
 		response.setContentType("text/html");
 		String recipient = request.getParameter("recipient").toString();
 		String message = request.getParameter("message").toString();
@@ -66,28 +64,15 @@ public class send extends HttpServlet {
 			if(checkMessage(message)==true)
 			{
 				System.out.println("second yess");
-				try
-				{
-					dbconnect db = new dbconnect();
-					Connection con = db.connect();
-			        Statement st = con.createStatement();
-			       LocalDateTime now = LocalDateTime.now();
-			        System.out.println(now);
-			       String q1 = "insert into messages values('"+uname+"','"+recipient+"','"+message+"','"+now+"')";
-			        st.executeUpdate(q1);
-		            System.out.println("inserted messages");
-		           /* String pq = "Message sent :Successful";
-	        		session.setAttribute("sent",pq);*/
-            		session.setAttribute("uname", uname);
-            		RequestDispatcher dispatcher = request.getRequestDispatcher("/messagesuccess.jsp");
-            	    dispatcher.forward(request, response);
-            	    st.close();
-			        con.close();
-				}
-				catch(SQLException e)
-				{
-					System.out.println(e.getMessage());
-				}
+				LocalDateTime now = LocalDateTime.now();
+		        System.out.println(now);
+		        boolean send1;
+		        sendmessage sm= new sendmessage();
+				send1=sm.insertintomessage(uname,recipient,message,now);
+				session.setAttribute("uname", uname);
+            	RequestDispatcher dispatcher = request.getRequestDispatcher("/messagesuccess.jsp");
+            	dispatcher.forward(request, response);
+			
 			}
 			else
 			{
@@ -112,7 +97,7 @@ public class send extends HttpServlet {
 	{
 		boolean check = false;
 		
-		matchuser m = new matchuser();
+		match m = new match();
 		HashMap<String, Integer> map = m.getUser(username);
 		Set s = map.entrySet();
 		Iterator i = s.iterator();
@@ -139,5 +124,5 @@ public class send extends HttpServlet {
 			
 		return check;
 	}
-
+	
 }

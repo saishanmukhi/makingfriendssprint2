@@ -3,23 +3,24 @@ package user.details.testcases;
 import static org.junit.Assert.*;
 
 import java.sql.Time;
-import java.sql.Timestamp;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+
 import java.util.Date;
 
 import org.junit.Test;
 
-import user.details.search;
+
+import user.details.mock.mocksearchuserclass;
 
 public class testsearchavailableusers {
 	ArrayList<String> listp = new ArrayList<String>();
 
 		@Test
 	public void testsearchuser() {
-		search h1 = new search();
+		mocksearchuserclass h1 = new mocksearchuserclass();
 		String time1 = "17:00";
 		String time2 = "19:00";
 
@@ -34,10 +35,10 @@ public class testsearchavailableusers {
 		}
 		Time t=new Time(date1.getTime());
 		Time t1=new Time(date2.getTime());
-		listp= h1.searchuser("2017-04-09",t,t1);
+		listp= h1.searchuser("shanmukhi","2017-04-10",t,t1);
 		assertFalse(listp.isEmpty());
-		assertTrue(listp.contains("lwhite"));
-		assertEquals(listp.get(0),"lwhite");
+		assertTrue(listp.contains("santhosh"));
+		assertEquals(listp.get(0),"santhosh");
 	}
 
 }

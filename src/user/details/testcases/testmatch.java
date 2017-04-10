@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
-import user.details.matchuser;
+import user.details.mock.mockmatch;
 
 public class testmatch {
 
@@ -15,14 +15,14 @@ public class testmatch {
 	@Test
 	public void testMatch() 
     {
-		matchuser h1 = new matchuser();
+		mockmatch h1 = new mockmatch();
 		hmap= h1.getUser("lwhite");
 		int p = hmap.get("ssdiproject");
 		assertFalse("matches present for this user",hmap.isEmpty());
 		assertEquals("testing number of matches for a particular user",2,p);
         assertTrue("testing one of matching option",hmap.containsKey("pratyusha"));
         assertFalse("not matched user",hmap.containsKey("anjani"));
-        matchuser h2 = new matchuser();
+        mockmatch h2 = new mockmatch();
         h1map=h2.getUser("anjani");
         assertTrue("no matches for this user",h1map.isEmpty());
           

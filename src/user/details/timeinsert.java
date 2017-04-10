@@ -1,14 +1,14 @@
 package user.details;
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -51,7 +51,7 @@ public class timeinsert extends HttpServlet {
 		doGet(request, response);
 		HttpSession session = request.getSession();
 		uname = (String) session.getAttribute("uname");
-		PrintWriter out = response.getWriter();
+		
 		response.setContentType("text/html");
 		String datex = request.getParameter("date1").toString();
 		String fromx = request.getParameter("from").toString();
@@ -101,7 +101,8 @@ public class timeinsert extends HttpServlet {
 					            boolean up=false,ip=false;
 					            if(insert==true)
 					            {
-					            	up = updatefreetime(uname,datex,fromx,tox);
+					            	freetimeinsertion fm = new freetimeinsertion();
+					            	up = fm.updatefreetime(uname,datex,fromx,tox);
 					            	if(up)
 					            	{
 					            	System.out.println("updating time values");
@@ -110,7 +111,8 @@ public class timeinsert extends HttpServlet {
 					            }
 					            else
 					            {
-					            	ip=insertfreetime(uname,datex,fromx,tox);
+					            	freetimeinsertion fm = new freetimeinsertion();
+					            	ip=fm.insertfreetime(uname,datex,fromx,tox);
 					            	if(ip)
 					            	{
 					            	System.out.println("inserting time values");
@@ -170,46 +172,6 @@ public class timeinsert extends HttpServlet {
 		}
 		
 	}
-	public boolean updatefreetime(String uname,String datex,String fromx,String tox)
-	{
-		boolean up1=false;
-		try{
-		dbconnect db = new dbconnect();
-		Connection con = db.connect();
-		String query = "update freetime set date1 = STR_TO_DATE(?,'%Y-%m-%d'),from1 = TIME_FORMAT(?,'%H:%i'),to1 = TIME_FORMAT(?,'%H:%i') where username = ?";
-        java.sql.PreparedStatement preparedStmt = con.prepareStatement(query);
-        preparedStmt.setString(1,datex);
-        preparedStmt.setString(2,fromx);
-        preparedStmt.setString(3,tox);
-        preparedStmt.setString(4,uname);
-        preparedStmt.executeUpdate();
-        up1=true;
-        preparedStmt.close();
-		}
-		catch(SQLException e)
-		{
-			System.out.println(e.getMessage());
-		}
-		return up1;
-	}
-	public boolean insertfreetime(String uname,String datex,String fromx,String tox)
-	{
-		boolean ip1=false;
-		try{
-			
-			dbconnect db = new dbconnect();
-			Connection con = db.connect();
-			Statement st = con.createStatement();
-	 	    String q1 = "insert into freetime values('"+uname+"',STR_TO_DATE('"+datex+"','%Y-%m-%d'),TIME_FORMAT('"+fromx+"','%H:%i'),TIME_FORMAT('"+tox+"','%H:%i'))";
-	        st.executeUpdate(q1);
-	        ip1=true;
-            System.out.println("inserted freetime");
-            st.close();
-		}
-		catch(SQLException e)
-		{
-			System.out.println(e.getMessage());
-		}
-		return ip1;
-	}
+	
+
 }

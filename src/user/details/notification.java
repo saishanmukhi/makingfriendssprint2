@@ -1,15 +1,14 @@
 package user.details;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -42,7 +41,7 @@ public class notification extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -53,33 +52,15 @@ public class notification extends HttpServlet {
 		doGet(request, response);
 		HttpSession session = request.getSession();
 		uname = (String) session.getAttribute("uname");
-		PrintWriter out = response.getWriter();
+
 		response.setContentType("text/html");
 		ArrayList<receivedMessage>text;
 		text = new ArrayList<receivedMessage>();
-		/*try
-		{
-			dbconnect db = new dbconnect();
-			Connection con = db.connect();
-			Statement st = con.createStatement();
-            String q1 = "select username,message,date from messages where receiver = '"+uname+"'";
-            ResultSet rs = st.executeQuery(q1);
-            String sender=null,message=null;
-            Timestamp datetime=null;
-            while(rs.next())
-            {
-            	sender =rs.getString(1);
-            	message = rs.getString(2);
-            	datetime = rs.getTimestamp(3);
-            	text.add(new receivedMessage(sender,message,datetime));
-             }*/
+		
 			text=getnotification(uname);
-            //System.out.println(sender + message + datetime);
             if(text.isEmpty())
     		{
     			
-    			//String pq = "No notifications";
-        		//session.setAttribute("notifications",pq);
         		session.setAttribute("uname",uname);
     	      	RequestDispatcher dispatcher = request.getRequestDispatcher("/nonotifications.jsp");
     		    dispatcher.forward(request, response);
@@ -93,11 +74,7 @@ public class notification extends HttpServlet {
     		    dispatcher.forward(request, response);
     		}
            
-		/*}
-		catch(SQLException e)
-        {
-            System.out.println(e.getMessage());    
-        }*/
+		
 	}
 	public ArrayList<receivedMessage> getnotification(String uname)
 	{
