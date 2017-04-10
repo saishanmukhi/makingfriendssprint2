@@ -117,25 +117,24 @@ public class validate {
 			return check;
 		}
 		public boolean validateDate(String date)
-        {
-            Calendar cal = Calendar.getInstance();
-            boolean check = false;        
-            
-            if(date.matches("\\d{4}-\\d{2}-\\d{2}"))
-            {
-                int y = Integer.parseInt(date.substring(0, 4));
-                int m = Integer.parseInt(date.substring(5, 7));
-                int d = Integer.parseInt(date.substring(8, date.length()));
-                
-                if(m > cal.get(Calendar.MONTH) && m <= 12 && y >= cal.get(Calendar.YEAR))
-                {
-                    if(d >= cal.get(Calendar.DATE) && d <= dayInMonth(y, m))
-                        check = true;
-                }
-            }
-            return check;
-        }
-        
+		{
+			Calendar cal = Calendar.getInstance();
+			boolean check = false;		
+			
+			if(date.matches("\\d{4}-\\d{2}-\\d{2}"))
+			{
+				int y = Integer.parseInt(date.substring(0, 4));
+				int m = Integer.parseInt(date.substring(5, 7));
+				int d = Integer.parseInt(date.substring(8, date.length()));
+				
+				if(m > cal.get(Calendar.MONTH) && m <= 12 && y >= cal.get(Calendar.YEAR))
+				{
+					if(d >= cal.get(Calendar.DATE) && d <= dayInMonth(y, m))
+						check = true;
+				}
+			}
+			return check;
+		}        
         public boolean validateFromTime(String from, String date)
         {
             Calendar cal = Calendar.getInstance();
@@ -209,8 +208,6 @@ public class validate {
                     if(h > 0 && h <= 23 && m >= 0 && m <= 59)
                         check = true;
                     else if(h == 0 && m <= 59 && m >= 29)
-
-
                         check = true;
                 }
             }
