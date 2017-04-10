@@ -2,10 +2,8 @@ package user.details;
 import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -136,8 +134,8 @@ public class validate {
 				}
 			}
 			return check;
-		}
-		public boolean validateFromTime(String from, String date)
+		}        
+        public boolean validateFromTime(String from, String date)
         {
             Calendar cal = Calendar.getInstance();
             boolean check = false;    
@@ -153,32 +151,32 @@ public class validate {
                 {
                     if(h == cal.get(Calendar.HOUR_OF_DAY) && m >= cal.get(Calendar.MINUTE))
                     {
-                    	if(h == 23 && m <= 29 && m >= 0)
-                    		check = true;
-                    	else if(h != 23 && m >= 0 && m <= 59)
-                    		check = true;
+                        if(h == 23 && m <= 29 && m >= 0)
+                            check = true;
+                        else if(h != 23 && m >= 0 && m <= 59)
+                            check = true;
                     }
                     else if(h != cal.get(Calendar.HOUR_OF_DAY))
                     {
-                    	if(h != 23 && m >= 0 && m <= 59)
-                    		check = true;
-                    	else if(h == 23 && m <= 29 && m >= 0)
-                    		check = true;
+                        if(h != 23 && m >= 0 && m <= 59)
+                            check = true;
+                        else if(h == 23 && m <= 29 && m >= 0)
+                            check = true;
                     }
                 }
                 else if((d != cal.get(Calendar.DATE) || y != cal.get(Calendar.YEAR) || mon != (cal.get(Calendar.MONTH) + 1)))
                 {
-                	if(h >= 0 && h < 23 && m >= 0 && m <= 59)
-                		check = true;
-                	else if(h == 23 && m <= 29 && m >= 0)
-                		check = true;
+                    if(h >= 0 && h < 23 && m >= 0 && m <= 59)
+                        check = true;
+                    else if(h == 23 && m <= 29 && m >= 0)
+                        check = true;
                 }
             }
             return check;
         }
-		public boolean validateToTime(String to, String date)
-		{
-			Calendar cal = Calendar.getInstance();
+        public boolean validateToTime(String to, String date)
+        {
+            Calendar cal = Calendar.getInstance();
             boolean check = false;    
             if(to.matches("\\d{2}:\\d{2}"))
             {
@@ -192,27 +190,27 @@ public class validate {
                 {
                     if(h == cal.get(Calendar.HOUR_OF_DAY) && m >= cal.get(Calendar.MINUTE))
                     {
-                    	if(h == 0 && m <= 59 && m >= 29)
-                    		check = true;
-                    	else if(h != 0 && m >= 0 && m <= 59)
-                    		check = true;
+                        if(h == 0 && m <= 59 && m >= 29)
+                            check = true;
+                        else if(h != 0 && m >= 0 && m <= 59)
+                            check = true;
                     }
                     else if(h != cal.get(Calendar.HOUR_OF_DAY))
                     {
-                    	if(h != 0 && m >= 0 && m <= 59)
-                    		check = true;
-                    	else if(h == 0 && m <= 59 && m >= 29)
-                    		check = true;
+                        if(h != 0 && m >= 0 && m <= 59)
+                            check = true;
+                        else if(h == 0 && m <= 59 && m >= 29)
+                            check = true;
                     }
                 }
                 else if((d != cal.get(Calendar.DATE) || y != cal.get(Calendar.YEAR) || mon != (cal.get(Calendar.MONTH) + 1)))
                 {
-                	if(h > 0 && h <= 23 && m >= 0 && m <= 59)
-                		check = true;
-                	else if(h == 0 && m <= 59 && m >= 29)
-                		check = true;
+                    if(h > 0 && h <= 23 && m >= 0 && m <= 59)
+                        check = true;
+                    else if(h == 0 && m <= 59 && m >= 29)
+                        check = true;
                 }
             }
-            return check;			
-		}
+            return check;            
+        }
 }
